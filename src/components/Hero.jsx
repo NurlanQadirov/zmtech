@@ -1,11 +1,8 @@
-import React, { Suspense } from 'react'; // DƏYİŞİKLİK: Suspense import edildi
+import React from 'react'; // Suspense silindi
 import { motion } from 'framer-motion';
-import DigitalCore from './DigitalCore';
+import DigitalCore from './DigitalCore'; // Birbaşa import edilir
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-// DƏYİŞİKLİK: DigitalCore komponenti React.lazy ilə import edilir
-const LazyDigitalCore = React.lazy(() => import('./DigitalCore'));
 
 const characterVariants = {
   hidden: { opacity: 0 },
@@ -29,11 +26,9 @@ const Hero = () => {
       id="home" 
       className="relative h-screen w-full flex items-center overflow-hidden"
     >
+      {/* Mobil cihazlarda gizli qalır, bu vacibdir */}
       <div className="absolute inset-0 z-0 hidden lg:block">
-        {/* DƏYİŞİKLİK: Komponent Suspense ilə əhatə olunaraq "tənbəl yükləmə" tətbiq edilir */}
-        <Suspense fallback={null}>
-          <LazyDigitalCore />
-        </Suspense>
+        <DigitalCore />
       </div>
 
       <div className="relative z-10 container mx-auto px-4">

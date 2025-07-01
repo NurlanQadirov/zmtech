@@ -23,7 +23,6 @@ const About = () => {
             </p>
           </motion.div>
           
-          {/* DƏYİŞİKLİK BURADADIR */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -31,15 +30,11 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="h-96 rounded-xl overflow-hidden"
           >
-             <picture>
-                <source srcSet="/office.webp" type="image/webp" />
-                <img
-                    src="/office.jpg"
-                    alt="Our Office"
-                    className="w-full h-full object-cover"
-                    loading="lazy" 
-                />
-            </picture>
+             <img
+                src="/office.webp"
+                alt="Our Office"
+                className="w-full h-full object-cover"
+             />
           </motion.div>
         </div>
       </div>
