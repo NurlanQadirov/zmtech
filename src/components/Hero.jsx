@@ -9,15 +9,6 @@ const characterVariants = {
   visible: { opacity: 1 },
 };
 
-const wordVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.05,
-    }
-  },
-};
-
 const Hero = () => {
   const slogan = "Innovative IT Solutions for The Digital Future";
   const paragraph = "We build cutting-edge web applications and provide robust digital services to elevate your business.";
@@ -35,12 +26,14 @@ const Hero = () => {
       id="home" 
       className="relative h-screen w-full flex items-center overflow-hidden"
     >
-      <div className="absolute inset-0 z-0">
+      {/* DƏYİŞİKLİK: 'hidden lg:block' class-ları ilə mobil cihazlarda gizlədildi */}
+      <div className="absolute inset-0 z-0 hidden lg:block">
         <DigitalCore />
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
-        <div className="flex">
+        {/* DƏYİŞİKLİK: Mobil cihazlarda mərkəzlənməsi üçün düzəliş edildi */}
+        <div className="flex justify-center lg:justify-start">
           <div className="lg:w-1/2 text-center lg:text-left">
             
             <motion.h1 
@@ -92,7 +85,6 @@ const Hero = () => {
             >
               <Link
                 to="/services"
-                // DƏYİŞİKLİK: Düymənin eninin düzəlməsi üçün "inline-flex" class-ı əlavə edildi
                 className="mt-8 px-6 py-3 bg-cyan-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-colors inline-flex items-center gap-2 mx-auto lg:mx-0"
               >
                 Explore Our Services
@@ -100,7 +92,8 @@ const Hero = () => {
               </Link>
             </motion.div>
           </div>
-
+          
+          {/* Bu div ancaq desktop-da yer tutmaq üçündür, mobil üçün gizlidir */}
           <div className="hidden lg:block lg:w-1/2"></div>
         </div>
       </div>

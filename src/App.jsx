@@ -11,7 +11,8 @@ const App = () => {
   useLenis();
   
   return (
-    <div className="bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+    // DƏYİŞİKLİK: "overflow-x-hidden" class-ı bura əlavə edildi.
+    <div className="bg-[#0A0A0A] text-white overflow-x-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

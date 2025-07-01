@@ -9,16 +9,14 @@ const processSteps = [
   { icon: Rocket, title: "4. Deployment & Support", description: "After rigorous testing, we deploy your project and provide ongoing support to ensure success." }
 ];
 
-// Mərhələlərin mətnini göstərən komponent
-const StepContent = ({ step }) => { // DƏYİŞİKLİK: 'alignment' prop-u silindi
+const StepContent = ({ step }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.6 }}
-      // DƏYİŞİKLİK: Bütün mətnlər həmişə soldan sağa (text-left) olacaq
-      className="text-left max-w-sm" // max-w-sm əlavə etdik ki, mətnlər çox uzanmasın
+      className="text-left max-w-sm"
     >
       <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
       <p className="text-gray-400">{step.description}</p>
@@ -36,7 +34,7 @@ const Process = () => {
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={targetRef} className="py-24 bg-[#0A0A0A]">
+    <section ref={targetRef} className="py-24 bg-[#0A0A0A] overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-space bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
@@ -44,16 +42,13 @@ const Process = () => {
           </h2>
         </div>
         
-        <div className="grid grid-cols-[1fr_auto_1fr] gap-x-8 md:gap-x-12">
-          
-          {/* SÜTUN 1: SOL TƏRƏFDƏKİ MƏTNLƏR */}
-          {/* DƏYİŞİKLİK: Mətn bloklarını sütunun sağına sıxışdırmaq üçün "items-end" istifadə olunur */}
+        {/* Desktop View (hidden on mobile) */}
+        <div className="hidden md:grid grid-cols-[1fr_auto_1fr] gap-x-8 md:gap-x-12">
           <div className="space-y-48 flex flex-col items-end pt-4">
             <StepContent step={processSteps[0]} />
             <StepContent step={processSteps[2]} />
           </div>
 
-          {/* SÜTUN 2: MƏRKƏZİ XƏTT VƏ İKONLAR */}
           <div className="relative flex justify-center">
             <div className="absolute top-0 bottom-0 w-0.5 bg-gray-800"></div>
             <motion.div style={{ height }} className="absolute top-0 w-0.5 bg-cyan-400"></motion.div>
@@ -72,12 +67,30 @@ const Process = () => {
             </div>
           </div>
 
-          {/* SÜTUN 3: SAĞ TƏRƏFDƏKİ MƏTNLƏR */}
-          {/* İZAH: Buradakı mətnlər onsuz da solda olduğu üçün dəyişikliyə ehtiyac yoxdur */}
           <div className="space-y-48 pt-64 text-left">
              <StepContent step={processSteps[1]} />
              <StepContent step={processSteps[3]} />
           </div>
+        </div>
+
+        {/* Mobile View (visible only on mobile) */}
+        <div className="md:hidden flex flex-col items-center space-y-12">
+          {processSteps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center text-center"
+            >
+              <div className="p-4 bg-gray-900 border border-gray-800 rounded-full text-cyan-400 mb-4">
+                <step.icon className="w-10 h-10" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="text-gray-400 max-w-xs">{step.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
