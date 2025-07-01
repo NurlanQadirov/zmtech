@@ -25,7 +25,7 @@ const Footer = () => {
                         <h4 className="font-semibold text-white mb-4">Get in Touch</h4>
                         <ul className="space-y-2">
                             <li><a href="mailto:contact@zmtech.com" className="hover:text-white transition-colors">contact@zmtech.com</a></li>
-                            <li><a href="tel:+994000000000" className="hover:text-white transition-colors">+994 (XX) XXX XX XX</a></li>
+                            <li><a href="tel:+994000000000" className="hover:text-white transition-colors">+994 (12) 345 67 89</a></li>
                         </ul>
                     </div>
                 </div>
