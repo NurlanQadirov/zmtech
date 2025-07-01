@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const About = () => {
-  // DƏYİŞİKLİK: Parallaks effekti üçün olan bütün hook-lar (useRef, useScroll, useTransform) silindi
   return (
     <section id="about" className="py-24 bg-[#050505] overflow-hidden">
       <div className="container mx-auto px-4">
@@ -23,7 +22,8 @@ const About = () => {
               With a focus on innovation and client success, we build custom software, dynamic websites, and provide expert IT consulting to navigate the complexities of the digital world.
             </p>
           </motion.div>
-          {/* DƏYİŞİKLİK: Şəkil konteyneri və şəklin öz stilləri sadələşdirildi */}
+          
+          {/* DƏYİŞİKLİK BURADADIR */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -31,11 +31,15 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="h-96 rounded-xl overflow-hidden"
           >
-             <img
-                src="/office.jpg"
-                alt="Our Office"
-                className="w-full h-full object-cover" // Şəklin konteyneri tam doldurmasını təmin edir
-             />
+             <picture>
+                <source srcSet="/office.webp" type="image/webp" />
+                <img
+                    src="/office.jpg"
+                    alt="Our Office"
+                    className="w-full h-full object-cover"
+                    loading="lazy" 
+                />
+            </picture>
           </motion.div>
         </div>
       </div>

@@ -6,8 +6,8 @@ import * as random from 'maath/random/dist/maath-random.esm';
 const DataParticles = () => {
   const ref = useRef();
   
-  // DƏYİŞİKLİK: Zərrəciklərin sayı 5000-dən 15000-ə qaldırıldı
-  const sphere = useMemo(() => random.inSphere(new Float32Array(15000), { radius: 1.4 }), []);
+  // PERFORMANS ÜÇÜN TÖVSİYƏ: Zərrəciklərin sayı 10000-ə endirilib
+  const sphere = useMemo(() => random.inSphere(new Float32Array(10000), { radius: 1.4 }), []);
 
   useFrame((state, delta) => {
     if(ref.current) {
@@ -22,7 +22,6 @@ const DataParticles = () => {
         <PointMaterial
           transparent
           color="#00BFFF"
-          // DƏYİŞİKLİK: Hər zərrəciyin ölçüsü artırıldı
           size={0.01}
           sizeAttenuation={true}
           depthWrite={false}

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react'; // DƏYİŞİKLİK: Suspense import edildi
 import { motion } from 'framer-motion';
 import DigitalCore from './DigitalCore';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+// DƏYİŞİKLİK: DigitalCore komponenti React.lazy ilə import edilir
+const LazyDigitalCore = React.lazy(() => import('./DigitalCore'));
 
 const characterVariants = {
   hidden: { opacity: 0 },
@@ -26,13 +29,14 @@ const Hero = () => {
       id="home" 
       className="relative h-screen w-full flex items-center overflow-hidden"
     >
-      {/* DƏYİŞİKLİK: 'hidden lg:block' class-ları ilə mobil cihazlarda gizlədildi */}
       <div className="absolute inset-0 z-0 hidden lg:block">
-        <DigitalCore />
+        {/* DƏYİŞİKLİK: Komponent Suspense ilə əhatə olunaraq "tənbəl yükləmə" tətbiq edilir */}
+        <Suspense fallback={null}>
+          <LazyDigitalCore />
+        </Suspense>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
-        {/* DƏYİŞİKLİK: Mobil cihazlarda mərkəzlənməsi üçün düzəliş edildi */}
         <div className="flex justify-center lg:justify-start">
           <div className="lg:w-1/2 text-center lg:text-left">
             
@@ -92,8 +96,7 @@ const Hero = () => {
               </Link>
             </motion.div>
           </div>
-          
-          {/* Bu div ancaq desktop-da yer tutmaq üçündür, mobil üçün gizlidir */}
+
           <div className="hidden lg:block lg:w-1/2"></div>
         </div>
       </div>
